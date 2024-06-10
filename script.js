@@ -56,6 +56,7 @@ function setInitialTime() {
     const seconds = parseInt(secondsSelect.value, 10);
     initialTime = (minutes * 60) + seconds;
     timeRemaining = initialTime;
+    updateDisplay(); // ここでディスプレイを更新します
 }
 
 function setMultiplier() {
@@ -67,6 +68,7 @@ function setVolume() {
 }
 
 function testSound() {
+    alarmSound.currentTime = 0; // 音の再生をリセット
     alarmSound.play();
 }
 

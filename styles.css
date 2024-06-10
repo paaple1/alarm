@@ -32,7 +32,11 @@ label {
     margin-right: 10px;
 }
 
-input[type="number"] {
-    width: 60px;
-    text-align: center;
+select, input[type="number"] {
+    margin: 10px 0;
+}
+
+#volume-control {
+    width: 200px;
+    margin-top: 10px;
 }

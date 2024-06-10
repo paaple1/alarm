@@ -38,7 +38,8 @@ function stopTimer() {
     if (timer) {
         clearInterval(timer);
         timer = null;
-        timeRemaining = Math.ceil(timeRemaining * multiplier);
+        initialTime = Math.ceil(initialTime * multiplier);
+        timeRemaining = initialTime;
         updateDisplay();
     }
 }

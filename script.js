@@ -12,6 +12,7 @@ const multiplierInput = document.getElementById('multiplier');
 const volumeControl = document.getElementById('volume-control');
 const testSoundBtn = document.getElementById('test-sound-btn');
 const alarmSound = document.getElementById('alarm-sound');
+const toggleDarkModeBtn = document.getElementById('toggle-dark-mode-btn');
 
 function updateDisplay() {
     const minutes = Math.floor(timeRemaining / 60);
@@ -72,6 +73,10 @@ function testSound() {
     alarmSound.play();
 }
 
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+}
+
 startBtn.addEventListener('click', startTimer);
 stopBtn.addEventListener('click', stopTimer);
 resetBtn.addEventListener('click', resetTimer);
@@ -80,6 +85,7 @@ secondsSelect.addEventListener('change', setInitialTime);
 multiplierInput.addEventListener('change', setMultiplier);
 volumeControl.addEventListener('input', setVolume);
 testSoundBtn.addEventListener('click', testSound);
+toggleDarkModeBtn.addEventListener('click', toggleDarkMode);
 
 setInitialTime();
 updateDisplay();

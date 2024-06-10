@@ -4,31 +4,34 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
 }
 
 body.dark-mode {
-    background-color: #333;
-    color: #fff;
+    background-color: #121212;
+    color: #ffffff;
 }
 
 .timer-container {
     text-align: center;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 body.dark-mode .timer-container {
-    background: #444;
-    color: #fff;
+    background: rgba(33, 33, 33, 0.9);
+    color: #ffffff;
 }
 
 #timer-display {
     font-size: 48px;
     margin-bottom: 20px;
+    font-weight: 300;
 }
 
 button {
@@ -36,10 +39,25 @@ button {
     margin: 5px;
     padding: 10px 20px;
     cursor: pointer;
+    border: none;
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.1);
+    color: #000;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-button.hidden {
-    display: none;
+button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+button.control-btn {
+    background: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+body.dark-mode button.control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 button#stop-btn {
@@ -50,12 +68,26 @@ body.dark-mode button#stop-btn {
     border-color: red;
 }
 
+button.hidden {
+    display: none;
+}
+
 label {
     margin-right: 10px;
 }
 
 select, input[type="number"] {
     margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+body.dark-mode select, body.dark-mode input[type="number"] {
+    background: #333;
+    color: #fff;
+    border-color: #555;
 }
 
 #volume-control {

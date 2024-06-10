@@ -4,8 +4,9 @@ let timeRemaining = initialTime;
 let multiplier = 1.5;
 const timerDisplay = document.getElementById('timer-display');
 const startBtn = document.getElementById('start-btn');
-const stopBtn = document.getElementById('stop-btn');
+const pauseBtn = document.getElementById('pause-btn');
 const resetBtn = document.getElementById('reset-btn');
+const stopBtn = document.getElementById('stop-btn');
 const minutesSelect = document.getElementById('minutes-select');
 const secondsSelect = document.getElementById('seconds-select');
 const multiplierInput = document.getElementById('multiplier');
@@ -30,18 +31,27 @@ function startTimer() {
             clearInterval(timer);
             timer = null;
             alarmSound.play();
+            toggleStopButton(true);
         }
     }, 1000);
+}
+
+function pauseTimer() {
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
 }
 
 function stopTimer() {
     if (timer) {
         clearInterval(timer);
         timer = null;
-        initialTime = Math.ceil(initialTime * multiplier);
-        timeRemaining = initialTime;
-        updateDisplay();
     }
+    initialTime = Math.ceil(initialTime * multiplier);
+    timeRemaining = initialTime;
+    updateDisplay();
+    toggleStopButton(false);
 }
 
 function resetTimer() {
@@ -51,6 +61,7 @@ function resetTimer() {
     }
     setInitialTime();
     updateDisplay();
+    toggleStopButton(false);
 }
 
 function setInitialTime() {
@@ -78,9 +89,22 @@ function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
 }
 
+function toggleStopButton(show) {
+    if (show) {
+        startBtn.classList.add('hidden');
+        pauseBtn.classList.add('hidden');
+        stopBtn.classList.remove('hidden');
+    } else {
+        startBtn.classList.remove('hidden');
+        pauseBtn.classList.remove('hidden');
+        stopBtn.classList.add('hidden');
+    }
+}
+
 startBtn.addEventListener('click', startTimer);
-stopBtn.addEventListener('click', stopTimer);
+pauseBtn.addEventListener('click', pauseTimer);
 resetBtn.addEventListener('click', resetTimer);
+stopBtn.addEventListener('click', stopTimer);
 minutesSelect.addEventListener('change', setInitialTime);
 secondsSelect.addEventListener('change', setInitialTime);
 multiplierInput.addEventListener('change', setMultiplier);

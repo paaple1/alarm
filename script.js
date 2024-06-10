@@ -93,10 +93,12 @@ function toggleStopButton(show) {
     if (show) {
         startBtn.classList.add('hidden');
         pauseBtn.classList.add('hidden');
+        resetBtn.classList.add('hidden');
         stopBtn.classList.remove('hidden');
     } else {
         startBtn.classList.remove('hidden');
         pauseBtn.classList.remove('hidden');
+        resetBtn.classList.remove('hidden');
         stopBtn.classList.add('hidden');
     }
 }

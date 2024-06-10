@@ -1,13 +1,16 @@
 let timer;
-let timeRemaining = 300; // 初期は5分 (300秒)
-let initialTime = 300;
+let initialTime = 300; // 初期は5分 (300秒)
+let timeRemaining = initialTime;
 let multiplier = 1.5;
 const timerDisplay = document.getElementById('timer-display');
 const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
 const resetBtn = document.getElementById('reset-btn');
-const initialTimeInput = document.getElementById('initial-time');
+const minutesSelect = document.getElementById('minutes-select');
+const secondsSelect = document.getElementById('seconds-select');
 const multiplierInput = document.getElementById('multiplier');
+const volumeControl = document.getElementById('volume-control');
+const testSoundBtn = document.getElementById('test-sound-btn');
 const alarmSound = document.getElementById('alarm-sound');
 
 function updateDisplay() {
@@ -44,23 +47,38 @@ function resetTimer() {
         clearInterval(timer);
         timer = null;
     }
-    timeRemaining = initialTime;
+    setInitialTime();
     updateDisplay();
 }
 
 function setInitialTime() {
-    initialTime = parseInt(initialTimeInput.value, 10) * 60;
-    resetTimer();
+    const minutes = parseInt(minutesSelect.value, 10);
+    const seconds = parseInt(secondsSelect.value, 10);
+    initialTime = (minutes * 60) + seconds;
+    timeRemaining = initialTime;
 }
 
 function setMultiplier() {
     multiplier = parseFloat(multiplierInput.value);
 }
 
+function setVolume() {
+    alarmSound.volume = volumeControl.value;
+}
+
+function testSound() {
+    alarmSound.play();
+}
+
 startBtn.addEventListener('click', startTimer);
 stopBtn.addEventListener('click', stopTimer);
 resetBtn.addEventListener('click', resetTimer);
-initialTimeInput.addEventListener('change', setInitialTime);
+minutesSelect.addEventListener('change', setInitialTime);
+secondsSelect.addEventListener('change', setInitialTime);
 multiplierInput.addEventListener('change', setMultiplier);
+volumeControl.addEventListener('input', setVolume);
+testSoundBtn.addEventListener('click', testSound);
 
+setInitialTime();
 updateDisplay();
+setVolume();

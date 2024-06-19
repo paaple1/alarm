@@ -30,7 +30,7 @@ function startTimer() {
         } else {
             clearInterval(timer);
             timer = null;
-            alarmSound.play();
+            startAlarm();
             toggleStopButton(true);
         }
     }, 1000);
@@ -48,6 +48,7 @@ function stopTimer() {
         clearInterval(timer);
         timer = null;
     }
+    stopAlarm();
     initialTime = Math.ceil(initialTime * multiplier);
     timeRemaining = initialTime;
     updateDisplay();
@@ -59,6 +60,7 @@ function resetTimer() {
         clearInterval(timer);
         timer = null;
     }
+    stopAlarm();
     setInitialTime();
     updateDisplay();
     toggleStopButton(false);
@@ -101,6 +103,22 @@ function toggleStopButton(show) {
         resetBtn.classList.remove('hidden');
         stopBtn.classList.add('hidden');
     }
+}
+
+let alarmInterval;
+function startAlarm() {
+    alarmSound.currentTime = 0; // 音の再生をリセット
+    alarmSound.play();
+    alarmInterval = setInterval(() => {
+        alarmSound.currentTime = 0;
+        alarmSound.play();
+    }, alarmSound.duration * 1000);
+}
+
+function stopAlarm() {
+    clearInterval(alarmInterval);
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
 }
 
 startBtn.addEventListener('click', startTimer);

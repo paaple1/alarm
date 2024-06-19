@@ -105,18 +105,14 @@ function toggleStopButton(show) {
     }
 }
 
-let alarmInterval;
 function startAlarm() {
     alarmSound.currentTime = 0; // 音の再生をリセット
     alarmSound.play();
-    alarmInterval = setInterval(() => {
-        alarmSound.currentTime = 0;
-        alarmSound.play();
-    }, alarmSound.duration * 1000);
+    alarmSound.loop = true; // ループ再生を設定
 }
 
 function stopAlarm() {
-    clearInterval(alarmInterval);
+    alarmSound.loop = false; // ループ再生を解除
     alarmSound.pause();
     alarmSound.currentTime = 0;
 }

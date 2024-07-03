@@ -1,12 +1,12 @@
 body {
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s;
 }
 
 body.dark-mode {
@@ -14,83 +14,40 @@ body.dark-mode {
     color: #ffffff;
 }
 
-.timer-container {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s ease, color 0.3s ease;
+body.flashing {
+    animation: flash 1s infinite;
 }
 
-body.dark-mode .timer-container {
-    background: rgba(33, 33, 33, 0.9);
-    color: #ffffff;
+@keyframes flash {
+    0% { background-color: #ffffff; }
+    50% { background-color: #000000; }
+    100% { background-color: #ffffff; }
+}
+
+.timer-container {
+    text-align: center;
 }
 
 #timer-display {
-    font-size: 48px;
+    font-size: 5em;
     margin-bottom: 20px;
-    font-weight: 300;
 }
 
-button {
-    font-size: 16px;
-    margin: 5px;
+.control-btn {
+    font-size: 1.5em;
     padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
     cursor: pointer;
-    border: none;
-    border-radius: 25px;
-    background: rgba(0, 0, 0, 0.1);
-    color: #000;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.3s;
 }
 
-button:hover {
-    background: rgba(0, 0, 0, 0.2);
+.control-btn:hover {
+    background: rgba(255, 255, 255, 1);
 }
 
-button.control-btn {
-    background: rgba(0, 0, 0, 0.1);
-    color: #000;
-}
-
-body.dark-mode button.control-btn {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-button#stop-btn {
-    border: 2px solid red;
-}
-
-body.dark-mode button#stop-btn {
-    border-color: red;
-}
-
-button.hidden {
+.hidden {
     display: none;
-}
-
-label {
-    margin-right: 10px;
-}
-
-select, input[type="number"] {
-    margin: 10px 0;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s ease;
-}
-
-body.dark-mode select, body.dark-mode input[type="number"] {
-    background: #333;
-    color: #fff;
-    border-color: #555;
-}
-
-#volume-control {
-    width: 200px;
-    margin-top: 10px;
 }

@@ -7,8 +7,8 @@ const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
 const resetBtn = document.getElementById('reset-btn');
 const stopBtn = document.getElementById('stop-btn');
-const minutesSelect = document.getElementById('minutes-select');
-const secondsSelect = document.getElementById('seconds-select');
+const minutesInput = document.getElementById('minutes-input');
+const secondsInput = document.getElementById('seconds-input');
 const multiplierInput = document.getElementById('multiplier');
 const volumeControl = document.getElementById('volume-control');
 const testSoundBtn = document.getElementById('test-sound-btn');
@@ -67,8 +67,8 @@ function resetTimer() {
 }
 
 function setInitialTime() {
-    const minutes = parseInt(minutesSelect.value, 10);
-    const seconds = parseInt(secondsSelect.value, 10);
+    const minutes = parseInt(minutesInput.value, 10);
+    const seconds = parseInt(secondsInput.value, 10);
     initialTime = (minutes * 60) + seconds;
     timeRemaining = initialTime;
     updateDisplay(); // ここでディスプレイを更新します
@@ -121,8 +121,8 @@ startBtn.addEventListener('click', startTimer);
 pauseBtn.addEventListener('click', pauseTimer);
 resetBtn.addEventListener('click', resetTimer);
 stopBtn.addEventListener('click', stopTimer);
-minutesSelect.addEventListener('change', setInitialTime);
-secondsSelect.addEventListener('change', setInitialTime);
+minutesInput.addEventListener('change', setInitialTime);
+secondsInput.addEventListener('change', setInitialTime);
 multiplierInput.addEventListener('change', setMultiplier);
 volumeControl.addEventListener('input', setVolume);
 testSoundBtn.addEventListener('click', testSound);
